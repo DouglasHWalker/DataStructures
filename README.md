@@ -1,2 +1,2 @@
-# Graphs
-Graph implementation
+# DataStructures
+Exploration of various Data Structures
