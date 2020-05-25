@@ -3,7 +3,8 @@ package testing;
 public class TestDriver {
 
 	public static void main(String args[]) {
-		new DMapTests();
-		new DoubleLinkedListTest();
+		new DGraphTests();
+//		new DMapTests();
+//		new DoubleLinkedListTest();
 	}
 }

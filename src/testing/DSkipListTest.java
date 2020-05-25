@@ -9,7 +9,7 @@ public class DSkipListTest {
 	
 	public static final int NUM_TESTS = 2000;
 	
-	public static void main(String[] args) {
+	public DSkipListTest() {
 		
 		LinkedList<Double> skipTests = new LinkedList<Double>();
 		LinkedList<Double> listTests = new LinkedList<Double>();
