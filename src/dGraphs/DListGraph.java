@@ -79,4 +79,26 @@ public class DListGraph extends Graph {
 		}
 		return parent;
 	}
+	
+	
+	public void dijkstasAlgorithm(int start) {
+		/**
+		 * Initialize S with stare vertex, s, and V-S with the remaining vertices
+		 * 	for all v in V-S {
+		 * 		set p[v] to s
+		 * 		if there is an edge (s, v)
+		 * 			Set d[v] to infinity
+		 * }
+		 * While V-S is not empty {
+		 * 		for all u in V-S find the smallest d[u]{
+		 * 			Remove u from V-S and add u to S
+		 * 		}
+		 * 		for all v adjacent to u in V-S{
+		 * 			if d[u] + w(u,v) is less than d[v]
+		 * 				set d[v] to d[u] + w(u,v)
+		 * 				set p[v] to u
+		 * 		}
+		 * }
+		 */
+	}
 }
