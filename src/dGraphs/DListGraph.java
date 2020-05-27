@@ -41,7 +41,7 @@ public class DListGraph extends Graph {
 			edges[edge.getDest()].add(new DEdge(edge.getDest(), edge.getSource(), edge.getWeight()));
 		}
 	}
-
+	
 	public int[] breadthFirstSearch(int start) {
 
 		Queue<Integer> theQueue = new LinkedList<Integer>();
@@ -58,16 +58,16 @@ public class DListGraph extends Graph {
 		theQueue.offer(start);
 
 		// perform breadth-first search until done
-		while (!theQueue.isEmpty()) {
+		while(!theQueue.isEmpty()) {
 			// take a vertex, current, out of the queue (begin visiting current)
 			int current = theQueue.poll();
 			// examine each vertex, neighbor, adjacent to current
 			Iterator<DEdge> iter = this.edgeIterator(current);
-			while (iter.hasNext()) {
+			while(iter.hasNext()) {
 				DEdge edge = iter.next();
 				int neighbor = edge.getDest();
 				// if the neighbor has not been identified
-				if (!identified[neighbor]) {
+				if(!identified[neighbor]) {
 					// mark as identified
 					identified[neighbor] = true;
 					// place into queue
@@ -79,5 +79,26 @@ public class DListGraph extends Graph {
 		}
 		return parent;
 	}
-
+	
+	
+	public void dijkstasAlgorithm(int start) {
+		/**
+		 * Initialize S with stare vertex, s, and V-S with the remaining vertices
+		 * 	for all v in V-S {
+		 * 		set p[v] to s
+		 * 		if there is an edge (s, v)
+		 * 			Set d[v] to infinity
+		 * }
+		 * While V-S is not empty {
+		 * 		for all u in V-S find the smallest d[u]{
+		 * 			Remove u from V-S and add u to S
+		 * 		}
+		 * 		for all v adjacent to u in V-S{
+		 * 			if d[u] + w(u,v) is less than d[v]
+		 * 				set d[v] to d[u] + w(u,v)
+		 * 				set p[v] to u
+		 * 		}
+		 * }
+		 */
+	}
 }
