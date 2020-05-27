@@ -41,7 +41,7 @@ public class DListGraph extends Graph {
 			edges[edge.getDest()].add(new DEdge(edge.getDest(), edge.getSource(), edge.getWeight()));
 		}
 	}
-	
+
 	public int[] breadthFirstSearch(int start) {
 
 		Queue<Integer> theQueue = new LinkedList<Integer>();
@@ -58,16 +58,16 @@ public class DListGraph extends Graph {
 		theQueue.offer(start);
 
 		// perform breadth-first search until done
-		while(!theQueue.isEmpty()) {
+		while (!theQueue.isEmpty()) {
 			// take a vertex, current, out of the queue (begin visiting current)
 			int current = theQueue.poll();
 			// examine each vertex, neighbor, adjacent to current
 			Iterator<DEdge> iter = this.edgeIterator(current);
-			while(iter.hasNext()) {
+			while (iter.hasNext()) {
 				DEdge edge = iter.next();
 				int neighbor = edge.getDest();
 				// if the neighbor has not been identified
-				if(!identified[neighbor]) {
+				if (!identified[neighbor]) {
 					// mark as identified
 					identified[neighbor] = true;
 					// place into queue
@@ -79,4 +79,5 @@ public class DListGraph extends Graph {
 		}
 		return parent;
 	}
+
 }
