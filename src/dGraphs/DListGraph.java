@@ -1,5 +1,6 @@
 package dGraphs;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -36,7 +37,7 @@ public class DListGraph extends Graph {
 
 	public void insert(DEdge edge) {
 		edges[edge.getSource()].add(edge);
-		if (isDirected()) {
+		if (!isDirected()) {
 			// add the edge going opposite direction
 			edges[edge.getDest()].add(new DEdge(edge.getDest(), edge.getSource(), edge.getWeight()));
 		}
@@ -81,24 +82,48 @@ public class DListGraph extends Graph {
 	}
 	
 	
-	public void dijkstasAlgorithm(int start) {
-		/**
-		 * Initialize S with stare vertex, s, and V-S with the remaining vertices
-		 * 	for all v in V-S {
-		 * 		set p[v] to s
-		 * 		if there is an edge (s, v)
-		 * 			Set d[v] to infinity
-		 * }
-		 * While V-S is not empty {
-		 * 		for all u in V-S find the smallest d[u]{
-		 * 			Remove u from V-S and add u to S
-		 * 		}
-		 * 		for all v adjacent to u in V-S{
-		 * 			if d[u] + w(u,v) is less than d[v]
-		 * 				set d[v] to d[u] + w(u,v)
-		 * 				set p[v] to u
-		 * 		}
-		 * }
-		 */
+	public void dijkstasAlgorithm(int start, double[] dist, int[] pred) {
+		// Initialize S with start vertex, s, and V-S with the remaining vertices
+		int num = this.getNumV();
+		HashSet<Integer> vMinusS = new HashSet<Integer>(num);
+		for(int i = 0; i < num; i++) {
+			if(i != start) {
+				vMinusS.add(i);
+			}
+		}
+		// Initialize pred and dist
+		for(int v : vMinusS) {
+			pred[v] = start;
+			DEdge edge = this.getEdge(start, v);
+			if(edge == null) {
+				dist[v] = Double.POSITIVE_INFINITY;
+			} else {
+				dist[v] = edge.getWeight();
+			}
+		}
+		// Main loop
+		while(!vMinusS.isEmpty()) {
+			// find the value u in V-S with the smallest dist[u]
+			double minDist = Double.POSITIVE_INFINITY;
+			int u = -1;
+			for (int v : vMinusS) {
+				if(dist[v] < minDist) {
+					minDist = dist[v];
+					u = v;
+				}
+			}
+			// remove u from v-s
+			vMinusS.remove(u);
+			// update the distances
+			for (int v : vMinusS) {
+				if(this.isEdge(u, v)) {
+					double weight = this.getEdge(u, v).getWeight();
+					if(dist[u] + weight < dist[v]) {
+						dist[v] = dist[u] + weight;
+						pred[v] = u;
+					}
+				}
+			}
+		}
 	}
 }
