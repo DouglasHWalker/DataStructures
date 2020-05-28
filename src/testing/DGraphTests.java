@@ -70,7 +70,7 @@ public class DGraphTests {
 		
 		int[] predecessor = new int[5];
 		double[] distance = new double[5];
-		dijktrasGraph.dijkstasAlgorithm(0, predecessor, distance);
+		dijktrasGraph.dijkstasAlgorithm(0, distance, predecessor);
 		
 		// Prim's Algorithm
 		DListGraph primsGraph = new DListGraph(6, false);
@@ -90,10 +90,7 @@ public class DGraphTests {
 		// 4 - 5
 		primsGraph.insert(new DEdge(4, 5,  5.0));
 		
-		
-		int[] predecessorPrim = new int[6];
-		double[] distancePrim = new double[6];
-		primsGraph.(0, distancePrim, predecessorPrim);
+		primsGraph.primsAlgorithm(0);
 
 	}
 }
