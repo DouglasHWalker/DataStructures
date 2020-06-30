@@ -3,6 +3,7 @@ package testing;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+import dSorting.HeapSort;
 import dSorting.InsertionSort;
 import dSorting.MergeSort;
 import dSorting.SelectionSort;
@@ -13,7 +14,7 @@ public class SortingTests {
 
 		long startTime = 0;
 		long endTime = 0;
-		
+
 		// SELECTION SORT
 		System.out.println("SELECTION SORT");
 		int[] array = new int[] { 20, 65, 30, 60, 35 };
@@ -35,7 +36,7 @@ public class SortingTests {
 		array = new SelectionSort(array).sortArray();
 		endTime = System.currentTimeMillis();
 //		printArray(array);
-		System.out.println("SELECTION SORT: " + (endTime - startTime )/ 1000.0 );
+		System.out.println("SELECTION SORT: " + (endTime - startTime) / 1000.0);
 
 		// INSERTION SORT
 		System.out.println("INSERTION SORT");
@@ -58,7 +59,7 @@ public class SortingTests {
 		array = new InsertionSort(array).sortArray();
 		endTime = System.currentTimeMillis();
 //		printArray(array);
-		System.out.println("INSERTION SORT: " + (endTime - startTime )/ 1000.0 );
+		System.out.println("INSERTION SORT: " + (endTime - startTime) / 1000.0);
 
 		// SHELL SORT
 
@@ -78,14 +79,38 @@ public class SortingTests {
 		array = new MergeSort(array).sortArray();
 		printArray(array);
 
-		array = createArray(100000);
+		array = createArray(100000000);
 		array = jumbleArray(array);
 //		printArray(array);
 		startTime = System.currentTimeMillis();
 		array = new MergeSort(array).sortArray();
 		endTime = System.currentTimeMillis();
 //		printArray(array);
-		System.out.println("merge SORT: " + (endTime - startTime )/ 1000.0 );
+		System.out.println("merge SORT: " + (endTime - startTime) / 1000.0);
+
+		// HEAP SORT
+
+		System.out.println("HEAP SORT");
+		array = new int[] { 50, 60, 45, 30, 90, 20, 80, 15 };
+
+		printArray(array);
+		array = new HeapSort(array).sortArray();
+		printArray(array);
+
+		array = createArray(100);
+		array = jumbleArray(array);
+		printArray(array);
+		array = new HeapSort(array).sortArray();
+		printArray(array);
+
+		array = createArray(100000000);
+		array = jumbleArray(array);
+//				printArray(array);
+		startTime = System.currentTimeMillis();
+		array = new HeapSort(array).sortArray();
+		endTime = System.currentTimeMillis();
+//				printArray(array);
+		System.out.println("HEAP SORT: " + (endTime - startTime) / 1000.0);
 
 	}
 
